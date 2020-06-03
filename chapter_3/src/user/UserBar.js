@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Login from './Login'
 import Logout from './Logout'
 import Register from './Register'
 
-const UserBar = () => {
-  const [user, setUser] = useState('')
-
+const UserBar = ({ user, setUser }) => {
   if (user) {
     return <Logout user={user} setUser={setUser} />
   }

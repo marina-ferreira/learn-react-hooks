@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import UserBar from 'user/UserBar'
 import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
@@ -6,12 +6,12 @@ import PostList from 'post/PostList'
 import './App.css'
 
 function App() {
-  const user = 'Marina'
+  const [user, setUser] = useState('')
 
   return (
     <div className="App">
-      <UserBar />
-      <CreatePost user={user} />
+      <UserBar user={user} setUser={setUser} />
+      {user && <CreatePost user={user} />}
 
       <PostList posts={posts} />
     </div>
