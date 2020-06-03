@@ -3,7 +3,7 @@ import Post from './Post'
 
 const PostList = ({ posts = [] }) => {
   const renderPost = post => (
-    <Post {...post} key={post.id} />
+    <Post {...post} key={`post-${post.id}`} />
   )
 
   return (

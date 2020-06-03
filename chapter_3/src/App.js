@@ -7,11 +7,12 @@ import './App.css'
 
 function App() {
   const [user, setUser] = useState('')
+  const [posts, setPosts] = useState(defaultPosts)
 
   return (
     <div className="App">
       <UserBar user={user} setUser={setUser} />
-      {user && <CreatePost user={user} />}
+      {user && <CreatePost user={user} posts={posts} setPosts={setPosts} />}
 
       <PostList posts={posts} />
     </div>
@@ -20,7 +21,7 @@ function App() {
 
 export default App
 
-const posts = [
+const defaultPosts = [
   {
     id: 1,
     title: 'React Hooks',
