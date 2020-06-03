@@ -8,7 +8,7 @@ const UserBar = () => {
   const [user, setUser] = useState('')
 
   if (user) {
-    return <Logout user={user} />
+    return <Logout user={user} setUser={setUser} />
   }
 
   return (
