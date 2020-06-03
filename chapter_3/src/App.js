@@ -6,10 +6,12 @@ import PostList from 'post/PostList'
 import './App.css'
 
 function App() {
+  const user = 'Marina'
+
   return (
     <div className="App">
       <UserBar />
-      <CreatePost />
+      <CreatePost user={user} />
 
       <PostList posts={posts} />
     </div>
