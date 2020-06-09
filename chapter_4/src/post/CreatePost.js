@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const CreatePost = ({ user, posts, setPosts }) => {
+const CreatePost = ({ user, posts, dispatch }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
@@ -9,11 +9,12 @@ const CreatePost = ({ user, posts, setPosts }) => {
 
     const newPost = {
       id: posts.length + 1,
-      title, content,
+      title,
+      content,
       author: user
     }
 
-    setPosts([newPost, ...posts])
+    dispatch({ type: 'CREATE_POST', ...newPost })
   }
 
   return (
