@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Login = ({ setUser }) => {
+const Login = ({ dispatch }) => {
   const [username, setUsername] = useState('')
 
   const handleUsername = e => {
@@ -9,7 +9,7 @@ const Login = ({ setUser }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setUser(username)
+    dispatch({ type: 'LOGIN', username })
   }
 
   return (

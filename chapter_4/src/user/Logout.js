@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Logout = ({ user, setUser }) => {
+const Logout = ({ user, dispatch }) => {
   const handleSubmit = e => {
     e.preventDefault()
-    setUser('')
+    dispatch({ type: 'LOGOUT' })
   }
 
   return (

@@ -1,17 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 import UserBar from 'user/UserBar'
 import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
 
 import './App.css'
 
+const userReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+    case 'REGISTER':
+      return action.username
+    case 'LOGOUT':
+      return ''
+    default:
+      throw new Error()
+  }
+}
+
 function App() {
-  const [user, setUser] = useState('')
+  const [user, dispatchUser] = useReducer(userReducer, '')
   const [posts, setPosts] = useState(defaultPosts)
 
   return (
     <div className="App">
-      <UserBar user={user} setUser={setUser} />
+      <UserBar user={user} dispatch={dispatchUser} />
       {user && <CreatePost user={user} posts={posts} setPosts={setPosts} />}
 
       <PostList posts={posts} />

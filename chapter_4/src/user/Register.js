@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Register = ({ setUser }) => {
+const Register = ({ dispatch }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -19,7 +19,7 @@ const Register = ({ setUser }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setUser(username)
+    dispatch({ type: 'REGISTER', username })
   }
 
   return (
