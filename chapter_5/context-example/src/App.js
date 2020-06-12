@@ -1,5 +1,6 @@
 import React, { createContext } from 'react'
 import Header from 'components/Header'
+import Page from 'components/Page'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
 
       <ThemeContext.Provider value={{ primaryColor: 'deeppink' }}>
         <Header text="Hello Planet" />
+        <Page headerColor="violet" />
       </ThemeContext.Provider>
     </ThemeContext.Provider>
   )
