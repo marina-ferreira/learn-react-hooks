@@ -5,8 +5,6 @@ import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
 import appReducer from 'reducers'
 
-import './App.css'
-
 function App() {
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
   const { user, posts } = state
