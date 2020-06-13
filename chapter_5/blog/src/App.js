@@ -11,7 +11,7 @@ import ChangeTheme from 'ui/ChangeTheme'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
-  const { user, posts } = state
+  const { user } = state
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'

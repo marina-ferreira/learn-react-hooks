@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { StateContext } from 'contexts'
 import Post from './Post'
 
-const PostList = ({ posts = [] }) => {
+const PostList = () => {
+  const { state: { posts } } = useContext(StateContext)
+
   const renderPost = post => (
     <Post {...post} key={`post-${post.id}`} />
   )

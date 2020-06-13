@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { StateContext } from 'contexts'
 
-const CreatePost = ({ user, posts, dispatch }) => {
+const CreatePost = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const { state: { user, posts }, dispatch } = useContext(StateContext)
 
   const handleCreate = e => {
     e.preventDefault()
