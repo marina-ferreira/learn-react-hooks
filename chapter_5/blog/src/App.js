@@ -1,6 +1,8 @@
 import React, { useReducer, useEffect } from 'react'
 
 import appReducer from 'reducers'
+import { ThemeContext } from 'contexts'
+
 import UserBar from 'user/UserBar'
 import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
@@ -9,6 +11,10 @@ import Header from 'ui/Header'
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
   const { user, posts } = state
+  const theme = {
+    primaryColor: 'deepskyblue',
+    secondaryColor: 'coral'
+  }
 
   useEffect(() => {
     if (user) {
@@ -20,14 +26,16 @@ const App = () => {
   }, [user])
 
   return (
-    <div className="App">
-      <Header text="React Hooks Blog" />
+    <ThemeContext.Provider value={theme}>
+      <div className="App">
+        <Header text="React Hooks Blog" />
 
-      <UserBar user={user} dispatch={dispatch} />
-      {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
+        <UserBar user={user} dispatch={dispatch} />
+        {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
 
-      <PostList posts={posts} />
-    </div>
+        <PostList posts={posts} />
+      </div>
+    </ThemeContext.Provider>
   )
 }
 
