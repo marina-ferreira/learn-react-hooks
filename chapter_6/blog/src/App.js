@@ -10,12 +10,18 @@ import Header from 'ui/Header'
 import ChangeTheme from 'ui/ChangeTheme'
 
 const App = () => {
-  const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
+  const [state, dispatch] = useReducer(appReducer, { user: '', posts: [] })
   const { user } = state
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
   })
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then(response => response.json())
+      .then(posts => dispatch({ type: 'FETCH_POSTS', posts }))
+  }, [])
 
   useEffect(() => {
     if (user) {
@@ -44,18 +50,3 @@ const App = () => {
 }
 
 export default App
-
-const defaultPosts = [
-  {
-    id: 1,
-    title: 'React Hooks',
-    content: 'The greatest thing since sliced bread!',
-    author: 'Daniel Bugl'
-  },
-  {
-    id: 2,
-    title: 'Using React Fragments',
-    content: 'Keeping the DOM tree clean!',
-    author: 'Daniel Bugl'
-  }
-]
