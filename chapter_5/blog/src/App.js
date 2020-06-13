@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, useState } from 'react'
 
 import appReducer from 'reducers'
 import { ThemeContext } from 'contexts'
@@ -7,14 +7,15 @@ import UserBar from 'user/UserBar'
 import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
 import Header from 'ui/Header'
+import ChangeTheme from 'ui/ChangeTheme'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
   const { user, posts } = state
-  const theme = {
+  const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
-  }
+  })
 
   useEffect(() => {
     if (user) {
@@ -29,6 +30,7 @@ const App = () => {
     <ThemeContext.Provider value={theme}>
       <div className="App">
         <Header text="React Hooks Blog" />
+        <ChangeTheme theme={theme} setTheme={setTheme} />
 
         <UserBar user={user} dispatch={dispatch} />
         {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
