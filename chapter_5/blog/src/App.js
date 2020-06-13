@@ -1,11 +1,12 @@
 import React, { useReducer, useEffect } from 'react'
 
+import appReducer from 'reducers'
 import UserBar from 'user/UserBar'
 import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
-import appReducer from 'reducers'
+import Header from 'ui/Header'
 
-function App() {
+const App = () => {
   const [state, dispatch] = useReducer(appReducer, { user: '', posts: defaultPosts })
   const { user, posts } = state
 
@@ -20,6 +21,8 @@ function App() {
 
   return (
     <div className="App">
+      <Header text="React Hooks Blog" />
+
       <UserBar user={user} dispatch={dispatch} />
       {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
 
