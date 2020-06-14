@@ -33,7 +33,7 @@ const App = () => {
     dispatch({ type: 'POSTS_ERROR' })
 
     posts?.data &&
-    dispatch({ type: 'FETCH_POSTS', posts: posts.data })
+    dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
   }, [posts])
 
   useEffect(() => {
