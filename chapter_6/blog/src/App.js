@@ -11,8 +11,12 @@ import Header from 'ui/Header'
 import ChangeTheme from 'ui/ChangeTheme'
 
 const App = () => {
-  const [state, dispatch] = useReducer(appReducer, { user: '', posts: [] })
-  const { user } = state
+  const [state, dispatch] = useReducer(appReducer, {
+    user: '',
+    posts: [],
+    error: ''
+  })
+  const { user, error } = state
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
@@ -25,9 +29,11 @@ const App = () => {
   useEffect(getPosts, [])
 
   useEffect(() => {
-    if (posts && posts.data) {
-      dispatch({ type: 'FETCH_POSTS', posts: posts.data })
-    }
+    posts?.error &&
+    dispatch({ type: 'POSTS_ERROR' })
+
+    posts?.data &&
+    dispatch({ type: 'FETCH_POSTS', posts: posts.data })
   }, [posts])
 
   useEffect(() => {
@@ -49,6 +55,7 @@ const App = () => {
           <UserBar />
           {user && <CreatePost />}
 
+          {error && <strong>{error}</strong>}
           <PostList />
         </div>
       </ThemeContext.Provider>
