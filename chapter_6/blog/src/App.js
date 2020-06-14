@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useState } from 'react'
+import { useResource } from 'react-request-hook'
 
 import appReducer from 'reducers'
 import { ThemeContext, StateContext } from 'contexts'
@@ -16,12 +17,18 @@ const App = () => {
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
   })
+  const [posts, getPosts] = useResource(() => ({
+    url: '/posts',
+    method: 'get'
+  }))
+
+  useEffect(getPosts, [])
 
   useEffect(() => {
-    fetch('/api/posts')
-      .then(response => response.json())
-      .then(posts => dispatch({ type: 'FETCH_POSTS', posts }))
-  }, [])
+    if (posts && posts.data) {
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data })
+    }
+  }, [posts])
 
   useEffect(() => {
     if (user) {
