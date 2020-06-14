@@ -1,4 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { useResource } from 'react-request-hook'
+
 import { StateContext } from 'contexts'
 
 const Register = () => {
@@ -6,6 +8,16 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const { dispatch } = useContext(StateContext)
+  const [user, register] = useResource((username, password) => ({
+    url: '/users',
+    method: 'post',
+    data: { username, password }
+  }))
+
+  useEffect(() => {
+    user?.data &&
+    dispatch({ type: 'REGISTER', username: user.data.username })
+  }, [user])
 
   const handleUsername = e => {
     setUsername(e.target.value)
@@ -21,7 +33,7 @@ const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch({ type: 'REGISTER', username })
+    register(username, password)
   }
 
   return (

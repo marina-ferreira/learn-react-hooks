@@ -6,11 +6,11 @@ import { StateContext } from 'contexts'
 const CreatePost = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const { state: { user, posts }, dispatch } = useContext(StateContext)
-  const [, createPost] = useResource(() => ({
+  const { state: { user }, dispatch } = useContext(StateContext)
+  const [, createPost] = useResource(({ title, content, author }) => ({
     url: '/posts',
     method: 'post',
-    data: { title, content, author: user }
+    data: { title, content, author }
   }))
 
   const handleCreate = e => {
