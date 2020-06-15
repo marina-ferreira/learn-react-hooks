@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from 'react'
+import React, { useReducer, useEffect, useState, Suspense } from 'react'
 import { useResource } from 'react-request-hook'
 
 import appReducer from 'reducers'
@@ -51,8 +51,9 @@ const App = () => {
         <div className="App">
           <Header text="React Hooks Blog" />
           <ChangeTheme theme={theme} setTheme={setTheme} />
-
-          <UserBar />
+          <Suspense fallback={'Loading...'}>
+            <UserBar />
+          </Suspense>
           {user && <CreatePost />}
 
           {error && <strong>{error}</strong>}
