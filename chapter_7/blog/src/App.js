@@ -1,14 +1,11 @@
-import React, { useReducer, useEffect, useState, Suspense } from 'react'
+import React, { useReducer, useEffect, useState } from 'react'
 import { useResource } from 'react-request-hook'
 
 import appReducer from 'reducers'
 import { ThemeContext, StateContext } from 'contexts'
 
-import UserBar from 'user/UserBar'
-import CreatePost from 'post/CreatePost'
 import PostList from 'post/PostList'
-import Header from 'ui/Header'
-import ChangeTheme from 'ui/ChangeTheme'
+import HeaderBar from 'ui/HeaderBar'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, {
@@ -49,12 +46,7 @@ const App = () => {
     <StateContext.Provider value={{ state, dispatch }}>
       <ThemeContext.Provider value={theme}>
         <div className="App">
-          <Header text="React Hooks Blog" />
-          <ChangeTheme theme={theme} setTheme={setTheme} />
-          <Suspense fallback={'Loading...'}>
-            <UserBar />
-          </Suspense>
-          {user && <CreatePost />}
+          <HeaderBar setTheme={setTheme} />
 
           {error && <strong>{error}</strong>}
           <PostList />
