@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, memo } from 'react'
 import { ThemeContext } from 'contexts'
 
 const Post = ({ title, content, author }) => {
@@ -14,4 +14,4 @@ const Post = ({ title, content, author }) => {
   )
 }
 
-export default Post
+export default memo(Post)
