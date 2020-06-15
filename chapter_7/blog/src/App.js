@@ -1,10 +1,9 @@
 import React, { useReducer, useEffect, useState } from 'react'
-import { useResource } from 'react-request-hook'
 
 import appReducer from 'reducers'
 import { ThemeContext, StateContext } from 'contexts'
 
-import PostList from 'post/PostList'
+import HomePage from 'pages/HomePage'
 import HeaderBar from 'ui/HeaderBar'
 
 const App = () => {
@@ -13,25 +12,11 @@ const App = () => {
     posts: [],
     error: ''
   })
-  const { user, error } = state
+  const { user } = state
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'coral'
   })
-  const [posts, getPosts] = useResource(() => ({
-    url: '/posts',
-    method: 'get'
-  }))
-
-  useEffect(getPosts, [])
-
-  useEffect(() => {
-    posts?.error &&
-    dispatch({ type: 'POSTS_ERROR' })
-
-    posts?.data &&
-    dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
-  }, [posts])
 
   useEffect(() => {
     if (user) {
@@ -48,8 +33,7 @@ const App = () => {
         <div className="App">
           <HeaderBar setTheme={setTheme} />
 
-          {error && <strong>{error}</strong>}
-          <PostList />
+          <HomePage />
         </div>
       </ThemeContext.Provider>
     </StateContext.Provider>
