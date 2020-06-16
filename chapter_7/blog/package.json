@@ -10,8 +10,10 @@
     "concurrently": "^5.2.0",
     "http-proxy-middleware": "^1.0.4",
     "json-server": "^0.16.1",
+    "navi": "^0.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-navi": "^0.14.4",
     "react-request-hook": "^2.1.1",
     "react-scripts": "3.4.1"
   },
