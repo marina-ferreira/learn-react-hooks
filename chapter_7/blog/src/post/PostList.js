@@ -7,7 +7,11 @@ const PostList = () => {
   const { state: { posts } } = useContext(StateContext)
 
   const renderPost = post => (
-    <Post {...post} key={`post-${post.id}`} />
+    <Post
+      key={`post-${post.id}`}
+      short={true}
+      {...post}
+    />
   )
 
   return (
