@@ -1,10 +1,18 @@
 import React, { useReducer, useEffect, useState } from 'react'
+import { Router, View } from 'react-navi'
+import { mount, route } from 'navi'
 
 import appReducer from 'reducers'
 import { ThemeContext, StateContext } from 'contexts'
 
 import HomePage from 'pages/HomePage'
+import PostPage from 'pages/PostPage'
 import HeaderBar from 'ui/HeaderBar'
+
+const routes = mount({
+  '/': route({ view: <HomePage /> }),
+  '/posts/:id': route(req => ({ view: <PostPage id={req.params.id} /> }))
+})
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, {
@@ -30,11 +38,13 @@ const App = () => {
   return (
     <StateContext.Provider value={{ state, dispatch }}>
       <ThemeContext.Provider value={theme}>
-        <div className="App">
-          <HeaderBar setTheme={setTheme} />
+        <Router routes={routes}>
+          <div className="App">
+            <HeaderBar setTheme={setTheme} />
 
-          <HomePage />
-        </div>
+            <View />
+          </div>
+        </Router>
       </ThemeContext.Provider>
     </StateContext.Provider>
   )
