@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StateContext } from 'contexts'
 import { useResource } from 'react-request-hook'
+import { useInput } from 'react-hookedup'
+
+import { StateContext } from 'contexts'
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const { value: username, bindToInput: bindUsername } = useInput('')
+  const { value: password, bindToInput: bindPassword } = useInput('')
   const [loginFailed, setLoginFailed] = useState(false)
   const { dispatch } = useContext(StateContext)
   const [user, login] = useResource((username, password) => ({
@@ -27,14 +29,6 @@ const Login = () => {
     setLoginFailed(true)
   }, [user])
 
-  const handleUsername = e => {
-    setUsername(e.target.value)
-  }
-
-  const handlePassword = e => {
-    setPassword(e.target.value)
-  }
-
   const handleSubmit = e => {
     e.preventDefault()
     login(username, password)
@@ -48,7 +42,7 @@ const Login = () => {
         name="login-username"
         id="login-username"
         value={username}
-        onChange={handleUsername}
+        {...bindUsername}
       />
 
       <label htmlFor="login-password">Password</label>
@@ -57,7 +51,7 @@ const Login = () => {
         name="login-password"
         id="login-password"
         value={password}
-        onChange={handlePassword}
+        {...bindPassword}
       />
 
       <input
