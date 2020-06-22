@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
 import { useNavigation } from 'react-navi'
+import { useInput } from 'react-hookedup'
 
 import { StateContext } from 'contexts'
 
 const CreatePost = () => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const { value: title, bindToInput: bindTitle } = useInput('')
+  const { value: content, bindToInput: bindContent } = useInput('')
   const navigation = useNavigation()
   const { state: { user }, dispatch } = useContext(StateContext)
   const [post, createPost] = useResource(({ title, content, author }) => ({
@@ -45,13 +46,10 @@ const CreatePost = () => {
           name="create-title"
           id="create-title"
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          {...bindTitle}
         />
       </div>
-      <textarea
-        value={content}
-        onChange={e => setContent(e.target.value)}
-      />
+      <textarea value={content} {...bindContent} />
 
       <input type="submit" value="Create" />
     </form>
