@@ -14,6 +14,7 @@ const postsReducer = (state, action) => {
   switch(action.type) {
     case 'CREATE_POST':
       const newPost = {
+        id: action.id,
         title: action.title,
         content: action.content,
         author: action.author
