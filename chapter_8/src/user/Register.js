@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
+import { useInput } from 'react-hookedup'
 
 import { StateContext } from 'contexts'
 
 const Register = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const { value: username, bindToInput: bindUsername } = useInput('')
+  const { value: password, bindToInput: bindPassword } = useInput('')
+  const { value: passwordConfirm, bindToInput: bindPasswordConfirm } = useInput('')
   const { dispatch } = useContext(StateContext)
   const [user, register] = useResource((username, password) => ({
     url: '/users',
@@ -18,18 +19,6 @@ const Register = () => {
     user?.data &&
     dispatch({ type: 'REGISTER', username: user.data.username })
   }, [user])
-
-  const handleUsername = e => {
-    setUsername(e.target.value)
-  }
-
-  const handlePassword = e => {
-    setPassword(e.target.value)
-  }
-
-  const handlePasswordConfirm = e => {
-    setPasswordConfirm(e.target.value)
-  }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -44,7 +33,7 @@ const Register = () => {
         name="register-username"
         id="register-username"
         value={username}
-        onChange={handleUsername}
+        {...bindUsername}
       />
 
       <label htmlFor="register-password">Password</label>
@@ -53,7 +42,7 @@ const Register = () => {
         name="register-password"
         id="register-password"
         value={password}
-        onChange={handlePassword}
+        {...bindPassword}
       />
 
       <label htmlFor="register-password-confirm">Confirm Password</label>
@@ -62,7 +51,7 @@ const Register = () => {
         name="register-password-confirm"
         id="register-password-confirm"
         value={passwordConfirm}
-        onChange={handlePasswordConfirm}
+        {...bindPasswordConfirm}
       />
 
       <input
