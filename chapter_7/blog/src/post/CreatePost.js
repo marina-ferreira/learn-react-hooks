@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
+import { useNavigation } from 'react-navi'
 
 import { StateContext } from 'contexts'
 
 const CreatePost = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const navigation = useNavigation()
   const { state: { user }, dispatch } = useContext(StateContext)
   const [post, createPost] = useResource(({ title, content, author }) => ({
     url: '/posts',
@@ -14,8 +16,10 @@ const CreatePost = () => {
   }))
 
   useEffect(() => {
-    post?.data &&
+    if (!post?.data) return
+
     dispatch({ type: 'CREATE_POST', ...post.data })
+    navigation.navigate(`/posts/${post.data.id}`)
   }, [post])
 
   const handleCreate = e => {
