@@ -8,6 +8,7 @@ import { ThemeContext, StateContext } from 'contexts'
 import HomePage from 'pages/HomePage'
 import PostPage from 'pages/PostPage'
 import HeaderBar from 'ui/HeaderBar'
+import Footer from 'ui/Footer'
 
 const routes = mount({
   '/': route({ view: <HomePage /> }),
@@ -43,6 +44,7 @@ const App = () => {
             <HeaderBar setTheme={setTheme} />
 
             <View />
+            <Footer />
           </div>
         </Router>
       </ThemeContext.Provider>
