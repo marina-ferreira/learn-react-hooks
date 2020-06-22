@@ -13,6 +13,7 @@
     "navi": "^0.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hookedup": "^0.1.2",
     "react-navi": "^0.14.4",
     "react-request-hook": "^2.1.1",
     "react-scripts": "3.4.1"
