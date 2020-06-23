@@ -2,6 +2,7 @@ import React, { useContext, memo } from 'react'
 import { Link } from 'react-navi'
 
 import { ThemeContext } from 'contexts'
+import UseLifeCycles from 'hook-components/UseLifeCycles'
 
 const Post = ({ id, title, content, author, short = false }) => {
   const { secondaryColor } = useContext(ThemeContext)
@@ -22,6 +23,7 @@ const Post = ({ id, title, content, author, short = false }) => {
       }
 
       <i>Written by <strong>{author}</strong></i>
+      <UseLifeCycles />
     </div>
   )
 }
