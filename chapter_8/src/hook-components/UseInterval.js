@@ -14,3 +14,16 @@ const UseInterval = () => {
 }
 
 export default UseInterval
+
+/*
+* The same can be achieved with an useEffect hook with clean up
+*/
+
+/*
+const [count, setCount] = useState(0)
+
+useEffect(() => {
+  const interval = setInterval(() => setCount(count + 1), 1000)
+  return () => clearInterval(interval)
+})
+*/

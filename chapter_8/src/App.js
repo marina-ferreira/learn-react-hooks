@@ -12,6 +12,7 @@ import Footer from 'ui/Footer'
 import UseMergeState from 'hook-components/UseMergeState'
 import UsePrevious from 'hook-components/UsePrevious'
 import UseInterval from 'hook-components/UseInterval'
+import UseTimeout from 'hook-components/UseTimeout'
 
 const routes = mount({
   '/': route({ view: <HomePage /> }),
@@ -51,6 +52,7 @@ const App = () => {
             <UseMergeState />
             <UsePrevious />
             <UseInterval />
+            <UseTimeout />
           </div>
         </Router>
       </ThemeContext.Provider>
