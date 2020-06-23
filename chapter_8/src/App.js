@@ -10,6 +10,7 @@ import PostPage from 'pages/PostPage'
 import HeaderBar from 'ui/HeaderBar'
 import Footer from 'ui/Footer'
 import UseMergeState from 'hook-components/UseMergeState'
+import UsePrevious from 'hook-components/UsePrevious'
 
 const routes = mount({
   '/': route({ view: <HomePage /> }),
@@ -47,6 +48,7 @@ const App = () => {
             <View />
             <Footer />
             <UseMergeState />
+            <UsePrevious />
           </div>
         </Router>
       </ThemeContext.Provider>
