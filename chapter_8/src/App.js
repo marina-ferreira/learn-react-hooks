@@ -19,6 +19,7 @@ import UseBoolean from 'hook-components/UseBoolean'
 import UseArray from 'hook-components/UseArray'
 import UseCounter from 'hook-components/UseCounter'
 import UseFocus from 'hook-components/UseFocus'
+import UseHover from 'hook-components/UseHover'
 
 const routes = mount({
   '/': route({ view: <HomePage /> }),
@@ -65,6 +66,7 @@ const App = () => {
             <UseArray />
             <UseCounter />
             <UseFocus />
+            <UseHover />
           </div>
         </Router>
       </ThemeContext.Provider>
