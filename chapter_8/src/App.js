@@ -18,6 +18,7 @@ import UseOnlineStatus from 'hook-components/UseOnlineStatus'
 import UseBoolean from 'hook-components/UseBoolean'
 import UseArray from 'hook-components/UseArray'
 import UseCounter from 'hook-components/UseCounter'
+import UseFocus from 'hook-components/UseFocus'
 
 const routes = mount({
   '/': route({ view: <HomePage /> }),
@@ -63,6 +64,7 @@ const App = () => {
             <UseBoolean />
             <UseArray />
             <UseCounter />
+            <UseFocus />
           </div>
         </Router>
       </ThemeContext.Provider>
