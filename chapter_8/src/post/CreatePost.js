@@ -2,13 +2,21 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
 import { useNavigation } from 'react-navi'
 import { useInput } from 'react-hookedup'
+import useUndo from 'use-undo'
 
 import { StateContext } from 'contexts'
 
 const CreatePost = () => {
-  const { value: title, bindToInput: bindTitle } = useInput('')
-  const { value: content, bindToInput: bindContent } = useInput('')
   const navigation = useNavigation()
+  const { value: title, bindToInput: bindTitle } = useInput('')
+  const [undoContent, {
+    set: setContent,
+    undo,
+    redo,
+    canUndo,
+    canRedo
+  }] = useUndo('')
+  const content = undoContent.present
   const { state: { user }, dispatch } = useContext(StateContext)
   const [post, createPost] = useResource(({ title, content, author }) => ({
     url: '/posts',
@@ -22,6 +30,10 @@ const CreatePost = () => {
     dispatch({ type: 'CREATE_POST', ...post.data })
     navigation.navigate(`/posts/${post.data.id}`)
   }, [post])
+
+  const handleContent = e => {
+    setContent(e.target.value)
+  }
 
   const handleCreate = e => {
     e.preventDefault()
@@ -49,7 +61,9 @@ const CreatePost = () => {
           {...bindTitle}
         />
       </div>
-      <textarea value={content} {...bindContent} />
+      <textarea value={content} onChange={handleContent} />
+      <button type="button" onClick={undo} disabled={!canUndo}>Undo</button>
+      <button type="button" onClick={redo} disabled={!canRedo}>Redo</button>
 
       <input type="submit" value="Create" />
     </form>
