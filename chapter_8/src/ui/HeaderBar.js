@@ -1,4 +1,5 @@
 import React, { useContext, Suspense } from 'react'
+import useWindowSize from '@rehooks/window-size'
 
 import { ThemeContext, StateContext } from 'contexts'
 
@@ -10,15 +11,20 @@ import ChangeTheme from 'ui/ChangeTheme'
 const HeaderBar = ({ setTheme }) => {
   const theme = useContext(ThemeContext)
   const { state: { user } } = useContext(StateContext)
+  const { innerWidth } = useWindowSize()
+  const isMobilePhone = innerWidth < 640
 
   return (
     <div>
       <Header text="React Hooks Blog" />
-      <ChangeTheme theme={theme} setTheme={setTheme} />
+      {!isMobilePhone && <ChangeTheme theme={theme} setTheme={setTheme} />}
 
-      <Suspense fallback={'Loading...'}>
-        <UserBar />
-      </Suspense>
+      {!isMobilePhone && (
+        <Suspense fallback={'Loading...'}>
+          <UserBar />
+        </Suspense>
+      )}
+
       {user && <CreatePost />}
     </div>
   )
