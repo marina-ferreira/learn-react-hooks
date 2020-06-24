@@ -3,12 +3,14 @@ import { useResource } from 'react-request-hook'
 import { useNavigation } from 'react-navi'
 import { useInput } from 'react-hookedup'
 import useUndo from 'use-undo'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { StateContext } from 'contexts'
 
 const CreatePost = () => {
   const navigation = useNavigation()
   const { value: title, bindToInput: bindTitle } = useInput('')
+  const [content, setInput] = useState('')
   const [undoContent, {
     set: setContent,
     undo,
@@ -16,7 +18,10 @@ const CreatePost = () => {
     canUndo,
     canRedo
   }] = useUndo('')
-  const content = undoContent.present
+  const [setDebounce, cancelDebounce] = useDebouncedCallback(
+    value => setContent(value),
+    200
+  )
   const { state: { user }, dispatch } = useContext(StateContext)
   const [post, createPost] = useResource(({ title, content, author }) => ({
     url: '/posts',
@@ -31,8 +36,16 @@ const CreatePost = () => {
     navigation.navigate(`/posts/${post.data.id}`)
   }, [post])
 
+  useEffect(() => {
+    cancelDebounce()
+    setInput(undoContent.present)
+  }, [undoContent])
+
   const handleContent = e => {
-    setContent(e.target.value)
+    const { value } = e.target
+
+    setInput(value)
+    setDebounce(value)
   }
 
   const handleCreate = e => {
