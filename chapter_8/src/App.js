@@ -16,6 +16,7 @@ import UseInterval from 'hook-components/UseInterval'
 import UseTimeout from 'hook-components/UseTimeout'
 import UseOnlineStatus from 'hook-components/UseOnlineStatus'
 import UseBoolean from 'hook-components/UseBoolean'
+import UseArray from 'hook-components/UseArray'
 
 const routes = mount({
   '/': route({ view: <HomePage /> }),
@@ -59,6 +60,7 @@ const App = () => {
             <UseTimeout />
             <UseOnlineStatus />
             <UseBoolean />
+            <UseArray />
           </div>
         </Router>
       </ThemeContext.Provider>
