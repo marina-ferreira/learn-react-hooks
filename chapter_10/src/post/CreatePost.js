@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
 import { useNavigation } from 'react-navi'
 import { useInput } from 'react-hookedup'
 import useUndo from 'use-undo'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { StateContext } from 'contexts'
 import useUserState from 'hooks/useUserState'
+import useDispatch from 'hooks/useDispatch'
 
 const CreatePost = () => {
   const navigation = useNavigation()
@@ -23,7 +23,7 @@ const CreatePost = () => {
     value => setContent(value),
     200
   )
-  const { dispatch } = useContext(StateContext)
+  const dispatch = useDispatch()
   const user = useUserState()
 
   const [post, createPost] = useResource(({ title, content, author }) => ({

@@ -1,8 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import { StateContext } from 'contexts'
 import usePostsState from 'hooks/usePostsState'
-
 import Post from './Post'
 
 const PostList = () => {

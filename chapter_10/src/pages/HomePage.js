@@ -2,10 +2,13 @@ import React, { useContext, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
 
 import { StateContext } from 'contexts'
+import useDispatch from 'hooks/useDispatch'
+
 import PostList from 'post/PostList'
 
 const HomePage = () => {
-  const { state: { error }, dispatch } = useContext(StateContext)
+  const { state: { error } } = useContext(StateContext)
+  const dispatch = useDispatch()
   const [posts, getPosts] = useResource(() => ({
     url: '/posts',
     method: 'get'

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import { StateContext } from 'contexts'
+import React from 'react'
 
 import useUserState from 'hooks/useUserState'
+import useDispatch from 'hooks/useDispatch'
 
 const Logout = () => {
-  const { dispatch } = useContext(StateContext)
+  const dispatch = useDispatch()
   const user = useUserState()
 
   const handleSubmit = e => {
