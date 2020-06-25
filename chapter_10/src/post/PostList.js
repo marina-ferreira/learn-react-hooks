@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 
 import { StateContext } from 'contexts'
+import usePostsState from 'hooks/usePostsState'
+
 import Post from './Post'
 
 const PostList = () => {
-  const { state: { posts } } = useContext(StateContext)
+  const posts = usePostsState()
 
   const renderPost = post => (
     <Post
