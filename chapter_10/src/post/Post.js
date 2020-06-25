@@ -1,11 +1,11 @@
-import React, { useContext, memo } from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-navi'
 
-import { ThemeContext } from 'contexts'
+import useTheme from 'hooks/useTheme'
 import UseLifeCycles from 'hook-components/UseLifeCycles'
 
 const Post = ({ id, title, content, author, short = false }) => {
-  const { secondaryColor } = useContext(ThemeContext)
+  const { secondaryColor } = useTheme()
   let processedContent = content
 
   if (short && content.length > 30) {

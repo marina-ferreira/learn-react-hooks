@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
-import { ThemeContext } from 'contexts'
+import React from 'react'
+
+import useTheme from 'hooks/useTheme'
 
 const Header = ({ text }) => {
-  const { primaryColor } = useContext(ThemeContext)
+  const { primaryColor } = useTheme()
 
   return (
     <h1 style={{ color: primaryColor }}>{text}</h1>
