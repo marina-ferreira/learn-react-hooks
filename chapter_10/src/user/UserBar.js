@@ -1,5 +1,6 @@
-import React, { useContext, lazy } from 'react'
-import { StateContext } from 'contexts'
+import React, { lazy } from 'react'
+
+import useUserState from 'hooks/useUserState'
 
 import Login from './Login'
 import Register from './Register'
@@ -7,7 +8,7 @@ import Register from './Register'
 const Logout = lazy(() => import('./Logout'))
 
 const UserBar = () => {
-  const { state: { user } } = useContext(StateContext)
+  const user = useUserState()
 
   if (user) return <Logout />
 

@@ -6,7 +6,11 @@ const UseFocus = () => {
 
   return (
     <div>
-      <input {...bind} value={focused ? 'focused' : 'not focused'} />
+      <input
+        {...bind}
+        value={focused ? 'focused' : 'not focused'}
+        onChange={() => {}}
+      />
     </div>
   )
 }

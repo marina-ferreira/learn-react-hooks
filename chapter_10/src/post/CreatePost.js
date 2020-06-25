@@ -6,6 +6,7 @@ import useUndo from 'use-undo'
 import { useDebouncedCallback } from 'use-debounce'
 
 import { StateContext } from 'contexts'
+import useUserState from 'hooks/useUserState'
 
 const CreatePost = () => {
   const navigation = useNavigation()
@@ -22,7 +23,9 @@ const CreatePost = () => {
     value => setContent(value),
     200
   )
-  const { state: { user }, dispatch } = useContext(StateContext)
+  const { dispatch } = useContext(StateContext)
+  const user = useUserState()
+
   const [post, createPost] = useResource(({ title, content, author }) => ({
     url: '/posts',
     method: 'post',

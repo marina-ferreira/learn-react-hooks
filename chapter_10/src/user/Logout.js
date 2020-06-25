@@ -1,8 +1,11 @@
 import React, { useContext } from 'react'
 import { StateContext } from 'contexts'
 
+import useUserState from 'hooks/useUserState'
+
 const Logout = () => {
-  const { state: { user }, dispatch } = useContext(StateContext)
+  const { dispatch } = useContext(StateContext)
+  const user = useUserState()
 
   const handleSubmit = e => {
     e.preventDefault()
