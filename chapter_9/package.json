@@ -27,7 +27,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:server": "npx json-server --watch server/db.json --port 4000 --routes server/routes.json",
-    "start": "npx concurrently \"npm run start:server\" \"npm run start:client\""
+    "start": "npx concurrently \"npm run start:server\" \"npm run start:client\"",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
