@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
 import { useInput } from 'react-hookedup'
 
@@ -18,7 +18,7 @@ const Register = () => {
   useEffect(() => {
     user?.data &&
     dispatch({ type: 'REGISTER', username: user.data.username })
-  }, [user])
+  }, [dispatch, user])
 
   const handleSubmit = e => {
     e.preventDefault()

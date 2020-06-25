@@ -34,12 +34,12 @@ const CreatePost = () => {
 
     dispatch({ type: 'CREATE_POST', ...post.data })
     navigation.navigate(`/posts/${post.data.id}`)
-  }, [post])
+  }, [dispatch, navigation, post])
 
   useEffect(() => {
     cancelDebounce()
     setInput(undoContent.present)
-  }, [undoContent])
+  }, [cancelDebounce, undoContent])
 
   const handleContent = e => {
     const { value } = e.target

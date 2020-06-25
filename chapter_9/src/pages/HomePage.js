@@ -19,7 +19,7 @@ const HomePage = () => {
 
     posts?.data &&
     dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
-  }, [posts])
+  }, [dispatch, posts])
 
   return (
     <div>

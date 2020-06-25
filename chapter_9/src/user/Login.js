@@ -27,7 +27,7 @@ const Login = () => {
 
     user?.error &&
     setLoginFailed(true)
-  }, [user])
+  }, [dispatch, user])
 
   const handleSubmit = e => {
     e.preventDefault()
