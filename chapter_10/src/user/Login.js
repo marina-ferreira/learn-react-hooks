@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useResource } from 'react-request-hook'
 import { useInput } from 'react-hookedup'
 
-import { useDispatch } from 'hooks'
+import { useDispatch, useApiLogin } from 'hooks'
 
 const Login = () => {
   const { value: username, bindToInput: bindUsername } = useInput('')
   const { value: password, bindToInput: bindPassword } = useInput('')
   const [loginFailed, setLoginFailed] = useState(false)
   const dispatch = useDispatch()
-  const [user, login] = useResource((username, password) => ({
-    url: `/login/${encodeURI(username)}/${encodeURI(password)}`,
-    method: 'get'
-  }))
+  const [user, login] = useApiLogin()
 
   useEffect(() => {
     if (user?.data) {

@@ -5,7 +5,7 @@ import { useInput } from 'react-hookedup'
 import useUndo from 'use-undo'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { useUserState, useDispatch } from 'hooks'
+import { useUserState, useDispatch, useApiCreatePost } from 'hooks'
 
 const CreatePost = () => {
   const navigation = useNavigation()
@@ -25,11 +25,7 @@ const CreatePost = () => {
   const dispatch = useDispatch()
   const user = useUserState()
 
-  const [post, createPost] = useResource(({ title, content, author }) => ({
-    url: '/posts',
-    method: 'post',
-    data: { title, content, author }
-  }))
+  const [post, createPost] = useApiCreatePost()
 
   useEffect(() => {
     if (!post?.data) return
