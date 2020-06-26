@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react'
 import useWindowSize from '@rehooks/window-size'
 
-import useTheme from 'hooks/useTheme'
-import useUserState from 'hooks/useUserState'
+import { useTheme, useUserState } from 'hooks'
 
 import UserBar from 'user/UserBar'
 import CreatePost from 'post/CreatePost'

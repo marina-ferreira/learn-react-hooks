@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 
-import useUserState from 'hooks/useUserState'
+import { useUserState } from 'hooks'
 
 import Login from './Login'
 import Register from './Register'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import usePostsState from 'hooks/usePostsState'
+import { usePostsState } from 'hooks'
 import Post from './Post'
 
 const PostList = () => {

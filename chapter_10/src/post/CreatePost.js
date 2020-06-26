@@ -5,8 +5,7 @@ import { useInput } from 'react-hookedup'
 import useUndo from 'use-undo'
 import { useDebouncedCallback } from 'use-debounce'
 
-import useUserState from 'hooks/useUserState'
-import useDispatch from 'hooks/useDispatch'
+import { useUserState, useDispatch } from 'hooks'
 
 const CreatePost = () => {
   const navigation = useNavigation()

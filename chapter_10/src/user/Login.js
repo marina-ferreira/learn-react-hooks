@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useResource } from 'react-request-hook'
 import { useInput } from 'react-hookedup'
 
-import useDispatch from 'hooks/useDispatch'
+import { useDispatch } from 'hooks'
 
 const Login = () => {
   const { value: username, bindToInput: bindUsername } = useInput('')

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Link } from 'react-navi'
 
-import useTheme from 'hooks/useTheme'
+import { useTheme } from 'hooks'
 import UseLifeCycles from 'hook-components/UseLifeCycles'
 
 const Post = ({ id, title, content, author, short = false }) => {

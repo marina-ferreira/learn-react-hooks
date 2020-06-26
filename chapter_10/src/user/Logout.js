@@ -1,7 +1,6 @@
 import React from 'react'
 
-import useUserState from 'hooks/useUserState'
-import useDispatch from 'hooks/useDispatch'
+import { useUserState, useDispatch } from 'hooks'
 
 const Logout = () => {
   const dispatch = useDispatch()
