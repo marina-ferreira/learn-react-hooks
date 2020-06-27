@@ -3,6 +3,13 @@ import { useInput } from 'react-hookedup'
 
 import { useDispatch, useApiRegister } from 'hooks'
 
+const useRegisterEffect = (user, dispatch) => {
+  useEffect(() => {
+    user?.data &&
+    dispatch({ type: 'REGISTER', username: user.data.username })
+  }, [dispatch, user])
+}
+
 const Register = () => {
   const { value: username, bindToInput: bindUsername } = useInput('')
   const { value: password, bindToInput: bindPassword } = useInput('')
@@ -11,10 +18,7 @@ const Register = () => {
   const dispatch = useDispatch()
   const [user, register] = useApiRegister()
 
-  useEffect(() => {
-    user?.data &&
-    dispatch({ type: 'REGISTER', username: user.data.username })
-  }, [dispatch, user])
+  useRegisterEffect(user, dispatch)
 
   const handleSubmit = e => {
     e.preventDefault()

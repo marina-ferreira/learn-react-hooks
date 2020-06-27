@@ -3,13 +3,7 @@ import { useInput } from 'react-hookedup'
 
 import { useDispatch, useApiLogin } from 'hooks'
 
-const Login = () => {
-  const { value: username, bindToInput: bindUsername } = useInput('')
-  const { value: password, bindToInput: bindPassword } = useInput('')
-  const [loginFailed, setLoginFailed] = useState(false)
-  const dispatch = useDispatch()
-  const [user, login] = useApiLogin()
-
+const useLoginEffect = (user, dispatch, setLoginFailed) => {
   useEffect(() => {
     if (user?.data) {
       if (user.data.length > 0) {
@@ -23,7 +17,17 @@ const Login = () => {
 
     user?.error &&
     setLoginFailed(true)
-  }, [dispatch, user])
+  }, [dispatch, user, setLoginFailed])
+}
+
+const Login = () => {
+  const { value: username, bindToInput: bindUsername } = useInput('')
+  const { value: password, bindToInput: bindPassword } = useInput('')
+  const [loginFailed, setLoginFailed] = useState(false)
+  const dispatch = useDispatch()
+  const [user, login] = useApiLogin()
+
+  useLoginEffect(user, dispatch, setLoginFailed)
 
   const handleSubmit = e => {
     e.preventDefault()
