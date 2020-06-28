@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 
 import { ThemeContextWrapper } from 'spec/testUtils'
-import useTheme from 'hooks/useTheme'
+import { useTheme } from 'hooks'
 
 test('should use theme', () => {
   const { result } = renderHook(

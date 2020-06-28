@@ -1,7 +1,9 @@
-import React from 'react'
-import { ThemeContext } from 'contexts'
+import React, { useReducer } from 'react'
 
-const ThemeContextWrapper = ({ children }) => {
+import { ThemeContext, StateContext } from 'contexts'
+import appReducer from 'reducers'
+
+export const ThemeContextWrapper = ({ children }) => {
   return (
     <ThemeContext.Provider value={{ primaryColor: 'deepskyblue', secondaryColor: 'coral' }}>
       {children}
@@ -9,4 +11,16 @@ const ThemeContextWrapper = ({ children }) => {
   )
 }
 
-export default ThemeContextWrapper
+export const StateContextWrapper = ({ children }) => {
+  const [state, dispatch] = useReducer(appReducer, {
+    user: '',
+    posts: [],
+    error: ''
+  })
+
+  return (
+    <StateContext.Provider value={{ state, dispatch }}>
+      {children}
+    </StateContext.Provider>
+  )
+}
