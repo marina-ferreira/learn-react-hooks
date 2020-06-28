@@ -24,3 +24,15 @@ test('should use initial value', () => {
   act(() => result.current.increment())
   expect(result.current.count).toBe(124)
 })
+
+test('should reset to initial value', () => {
+  let initialValue = 0
+  const { result, rerender } = renderHook(() => useCounter(initialValue))
+
+  initialValue = 123
+  rerender()
+
+  expect(result.current.count).toBe(0)
+  act(() => result.current.reset())
+  expect(result.current.count).toBe(123)
+})
