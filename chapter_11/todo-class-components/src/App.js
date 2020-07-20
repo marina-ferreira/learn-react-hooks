@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <h1>App</h1>
-  )
+import Header from 'components/Header'
+import AddTodo from 'components/AddTodo'
+import TodoList from 'components/TodoList'
+import TodoFilter from 'components/TodoFilter'
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <AddTodo />
+        <TodoList />
+        <TodoFilter />
+      </div>
+    )
+  }
 }
 
 export default App
