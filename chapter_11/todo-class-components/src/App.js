@@ -17,6 +17,12 @@ class App extends Component {
       filteredTodos: [],
       filter: 'all'
     }
+
+    this.fetchTodos = this.fetchTodos.bind(this)
+    this.addTodo = this.addTodo.bind(this)
+    this.toggleTodo = this.toggleTodo.bind(this)
+    this.removeTodo = this.removeTodo.bind(this)
+    this.filterTodos = this.filterTodos.bind(this)
   }
 
   componentDidMount() {
@@ -30,7 +36,7 @@ class App extends Component {
     })
   }
 
-  toggleTodos(id) {
+  toggleTodo(id) {
     const { todos } = this.state
 
     const newTodos = todos.map(todo => {
@@ -42,6 +48,14 @@ class App extends Component {
     }, [])
 
     this.setState({ todos: newTodos })
+    this.filterTodos()
+  }
+
+  addTodo(title) {
+    const { todos } = this.state
+    const newTodo = { id: generateID(), title, completed: false }
+
+    this.setState({ todos: [newTodo, ...todos] })
     this.filterTodos()
   }
 
@@ -74,13 +88,17 @@ class App extends Component {
   }
 
   render() {
+    const { filter, filteredTodos } = this.state
+
     return (
-      <div>
-        <Header />
-        <AddTodo />
-        <TodoList />
-        <TodoFilter />
-      </div>
+      <StateContext.Provider value={filteredTodos}>
+        <div>
+          <Header />
+          <AddTodo addTodo={this.addTodo} />
+          <TodoList toggleTodo={this.toggleTodo} removeTodo={this.removeTodo} />
+          <TodoFilter filter={filter} filterTodos={this.filterTodos} />
+        </div>
+      </StateContext.Provider>
     )
   }
 }
