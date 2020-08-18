@@ -6,9 +6,9 @@ class TodoFilter extends Component {
   render() {
     return (
       <div>
-        <TodoFilterItem name="all" />
-        <TodoFilterItem name="active" />
-        <TodoFilterItem name="completed" />
+        <TodoFilterItem {...this.props} name="all" />
+        <TodoFilterItem {...this.props} name="active" />
+        <TodoFilterItem {...this.props} name="completed" />
       </div>
     )
   }
