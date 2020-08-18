@@ -34,9 +34,11 @@ const todosReducer = (state, action) => {
   }
 }
 
-export const appReducer = (state, action) => {
+const appReducer = (state, action) => {
   return {
     todos: todosReducer(state.todos, action),
     filter: filterReducer(state.filter, action)
   }
 }
+
+export default appReducer
