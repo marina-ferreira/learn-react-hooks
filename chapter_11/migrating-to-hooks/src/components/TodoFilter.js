@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import TodoFilterItem from 'components/TodoFilterItem'
 
-class TodoFilter extends Component {
-  render() {
-    return (
-      <div>
-        <TodoFilterItem {...this.props} name="all" />
-        <TodoFilterItem {...this.props} name="active" />
-        <TodoFilterItem {...this.props} name="completed" />
-      </div>
-    )
-  }
+const TodoFilter = props => {
+  return (
+    <div>
+      <TodoFilterItem {...props} name="all" />
+      <TodoFilterItem {...props} name="active" />
+      <TodoFilterItem {...props} name="completed" />
+    </div>
+  )
 }
 
 export default TodoFilter
