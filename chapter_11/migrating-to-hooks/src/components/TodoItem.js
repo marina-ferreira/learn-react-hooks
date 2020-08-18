@@ -1,34 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class TodoItem extends Component {
-  constructor(props) {
-    super(props)
-
-    this.handleToggle = this.handleToggle.bind(this)
-    this.handleRemove = this.handleRemove.bind(this)
-  }
-
-  handleToggle() {
-    const { id, toggleTodo } = this.props
+const TodoItem = ({ id, title, completed, toggleTodo, removeTodo }) => {
+  const handleToggle = () => {
     toggleTodo(id)
   }
 
-  handleRemove() {
-    const { id, removeTodo } = this.props
+  const handleRemove = () => {
     removeTodo(id)
   }
 
-  render() {
-    const { title, completed } = this.props
-
-    return (
-      <div>
-        <input type="checkbox" checked={completed} onChange={this.handleToggle} />
-        {title}
-        <button onClick={this.handleRemove}>x</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <input type="checkbox" checked={completed} onChange={handleToggle} />
+      {title}
+      <button onClick={handleRemove}>x</button>
+    </div>
+  )
 }
 
 export default TodoItem
