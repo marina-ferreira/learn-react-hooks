@@ -1,14 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useMemo } from 'react'
 
-import StateContext from 'contexts/StateContext'
+import ConnectTodoItem from 'components/ConnectTodoItem'
 
-import TodoItem from 'components/TodoItem'
+const TodoList = ({ filter, todos }) => {
+  const filteredTodos = useMemo(() => {
+    switch (filter) {
+      case 'active':
+        return todos.filter(todo => !todo.completed)
+      case 'completed':
+        return todos.filter(todo => todo.completed)
 
-const TodoList = props => {
-  const items = useContext(StateContext)
+      default:
+      case 'all':
+        return todos
+    }
+  }, [filter, todos])
 
-  return items.map(item => (
-    <TodoItem {...item} {...props} key={item.id} />
+  return filteredTodos.map(item => (
+    <ConnectTodoItem {...item} key={item.id} />
   ))
 }
 
