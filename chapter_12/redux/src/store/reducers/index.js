@@ -1,6 +1,7 @@
 import { generateID } from 'services/api'
+import { combineReducers } from 'redux'
 
-const filterReducer = (state, action) => {
+const filter = (state = 'all', action) => {
   if (action.type === 'FILTER_TODOS') {
     return action.filter
   }
@@ -8,7 +9,7 @@ const filterReducer = (state, action) => {
   return state
 }
 
-const todosReducer = (state, action) => {
+const todos = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_TODOS':
       return action.todos
@@ -34,11 +35,6 @@ const todosReducer = (state, action) => {
   }
 }
 
-const appReducer = (state, action) => {
-  return {
-    todos: todosReducer(state.todos, action),
-    filter: filterReducer(state.filter, action)
-  }
-}
+const appReducer = combineReducers({ filter, todos })
 
 export default appReducer

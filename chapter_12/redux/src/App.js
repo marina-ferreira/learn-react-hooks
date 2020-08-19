@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 
 import StateContext from 'contexts/StateContext'
 import { fetchAPITodos } from 'services/api'
-import appReducer from 'store/reducersducers'
+import appReducer from 'store/reducers'
 
 import Header from 'components/Header'
 import AddTodo from 'components/AddTodo'
