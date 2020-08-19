@@ -1,5 +1,5 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, FILTER_TODOS, FETCH_TODOS } from 'types'
-import { fetchAPTTodos } from 'services/api'
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, FILTER_TODOS, FETCH_TODOS } from 'store/types'
+import { fetchAPITodos } from 'services/api'
 
 export const addTodo = title => ({
   type: ADD_TODO, title
@@ -19,7 +19,7 @@ export const filterTodos = filter => ({
 
 export const fetchTodos = () => {
   return async (dispatch) => {
-    const todos = await fetchAPTTodos()
+    const todos = await fetchAPITodos()
     dispatch({ type: FETCH_TODOS, todos })
   }
 }

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import ConnectTodoItem from 'components/ConnectTodoItem'
+import ConnectTodoItem from 'containers/ConnectedTodoItem'
 
 const TodoList = ({ filter, todos }) => {
   const filteredTodos = useMemo(() => {
