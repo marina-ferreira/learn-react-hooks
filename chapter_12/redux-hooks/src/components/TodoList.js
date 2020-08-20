@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import ConnectTodoItem from 'containers/ConnectedTodoItem'
+import TodoItem from 'components/TodoItem'
 
 const TodoList = ({ filter, todos }) => {
   const filteredTodos = useMemo(() => {
@@ -17,7 +17,7 @@ const TodoList = ({ filter, todos }) => {
   }, [filter, todos])
 
   return filteredTodos.map(item => (
-    <ConnectTodoItem {...item} key={item.id} />
+    <TodoItem {...item} key={item.id} />
   ))
 }
 
