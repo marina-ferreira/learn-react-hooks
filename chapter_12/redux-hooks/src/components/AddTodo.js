@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-const AddTodo = ({ addTodo }) => {
+import { addTodo } from 'store/actions'
+
+const AddTodo = () => {
+  const dispatch = useDispatch()
   const [input, setInput] = useState('')
 
   const handleInputChange = e => {
@@ -12,7 +16,7 @@ const AddTodo = ({ addTodo }) => {
 
     if (!input) return
 
-    addTodo(input)
+    dispatch(addTodo(input))
     setInput('')
   }
 

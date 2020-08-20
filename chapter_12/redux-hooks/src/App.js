@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import Header from 'components/Header'
-import ConnectedAddTodo from 'containers/ConnectedAddTodo'
+import AddTodo from 'components/AddTodo'
 import ConnectedTodoList from 'containers/ConnectedTodoList'
 import ConnectedTodoFilter from 'containers/ConnectedTodoFilter'
 
@@ -13,7 +13,7 @@ const App = ({ fetchTodos }) => {
   return (
     <div>
       <Header />
-      <ConnectedAddTodo />
+      <AddTodo />
       <ConnectedTodoList />
       <ConnectedTodoFilter />
     </div>
