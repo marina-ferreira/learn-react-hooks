@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { fetchTodos } from 'store/actions'
 
 import Header from 'components/Header'
 import AddTodo from 'components/AddTodo'
 import ConnectedTodoList from 'containers/ConnectedTodoList'
 import ConnectedTodoFilter from 'containers/ConnectedTodoFilter'
 
-const App = ({ fetchTodos }) => {
+const App = () => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    fetchTodos()
-  }, [fetchTodos])
+    dispatch(fetchTodos())
+  }, [dispatch])
 
   return (
     <div>
