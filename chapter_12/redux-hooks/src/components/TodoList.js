@@ -1,8 +1,12 @@
 import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 
 import TodoItem from 'components/TodoItem'
 
-const TodoList = ({ filter, todos }) => {
+const TodoList = () => {
+  const filter = useSelector(state => state.filter)
+  const todos = useSelector(state => state.todos)
+
   const filteredTodos = useMemo(() => {
     switch (filter) {
       case 'active':

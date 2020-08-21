@@ -5,7 +5,7 @@ import { fetchTodos } from 'store/actions'
 
 import Header from 'components/Header'
 import AddTodo from 'components/AddTodo'
-import ConnectedTodoList from 'containers/ConnectedTodoList'
+import TodoList from 'containers/TodoList'
 import ConnectedTodoFilter from 'containers/ConnectedTodoFilter'
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
     <div>
       <Header />
       <AddTodo />
-      <ConnectedTodoList />
+      <TodoList />
       <ConnectedTodoFilter />
     </div>
   )
