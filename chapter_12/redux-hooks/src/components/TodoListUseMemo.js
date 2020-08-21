@@ -1,16 +1,13 @@
 import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { createSelector } from 'reselect'
 
 import TodoItem from 'components/TodoItem'
 
-const todosSelector = state => state.todos
-const filterSelector = state => state.filter
+const TodoList = () => {
+  const filter = useSelector(state => state.filter)
+  const todos = useSelector(state => state.todos)
 
-const selectFilteredTodos = createSelector(
-  todosSelector,
-  filterSelector,
-  (todos, filter) => {
+  const filteredTodos = useMemo(() => {
     switch (filter) {
       case 'active':
         return todos.filter(todo => !todo.completed)
@@ -21,11 +18,7 @@ const selectFilteredTodos = createSelector(
       case 'all':
         return todos
     }
-  }
-)
-
-const TodoList = () => {
-  const filteredTodos = useSelector(selectFilteredTodos)
+  }, [filter, todos])
 
   return filteredTodos.map(item => (
     <TodoItem {...item} key={item.id} />
