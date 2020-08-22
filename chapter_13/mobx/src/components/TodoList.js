@@ -1,15 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { inject, observer } from 'mobx-react'
 
-import StateContext from 'contexts/StateContext'
+import TodoItem from './TodoItem'
 
-import TodoItem from 'components/TodoItem'
+const TodoList = ({ todoStore }) => {
+  if (!todoStore.filteredTodos) return <div>Loading...</div>
 
-const TodoList = props => {
-  const items = useContext(StateContext)
-
-  return items.map(item => (
-    <TodoItem {...item} {...props} key={item.id} />
-  ))
+  return todoStore.filteredTodos.map(item =>
+    <TodoItem key={item.id} item={item} />
+  )
 }
 
-export default TodoList
+export default inject('todoStore')(observer(TodoList))

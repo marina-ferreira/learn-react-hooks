@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'mobx-react'
+import 'mobx-react-lite/batchingForReactDom'
 
 import TodoStore from 'store'
 

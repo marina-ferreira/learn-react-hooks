@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TodoItem = ({ id, title, completed, toggleTodo, removeTodo }) => {
+const TodoItem = ({ item: { id, title, completed }, toggleTodo, removeTodo }) => {
   const handleToggle = () => {
     toggleTodo(id)
   }
