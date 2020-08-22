@@ -1,12 +1,13 @@
 import React from 'react'
+import { inject, observer } from 'mobx-react'
 
-const TodoItem = ({ item: { id, title, completed }, toggleTodo, removeTodo }) => {
+const TodoItem = ({ item: { id, title, completed }, todoStore }) => {
   const handleToggle = () => {
-    toggleTodo(id)
+    todoStore.toggleTodo(id)
   }
 
   const handleRemove = () => {
-    removeTodo(id)
+    todoStore.removeTodo(id)
   }
 
   return (
@@ -18,4 +19,4 @@ const TodoItem = ({ item: { id, title, completed }, toggleTodo, removeTodo }) =>
   )
 }
 
-export default TodoItem
+export default inject('todoStore')(observer(TodoItem))
