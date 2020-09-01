@@ -1,22 +1,29 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
+import { useObserver } from 'mobx-react'
+import { useTodoStore } from 'hooks'
 
-const TodoItem = ({ item: { id, title, completed }, todoStore }) => {
+const TodoItem = ({ item }) => {
+  const todoStore = useTodoStore()
+
   const handleToggle = () => {
-    todoStore.toggleTodo(id)
+    todoStore.toggleTodo(item.id)
   }
 
   const handleRemove = () => {
-    todoStore.removeTodo(id)
+    todoStore.removeTodo(item.id)
   }
 
-  return (
-    <div>
-      <input type="checkbox" checked={completed} onChange={handleToggle} />
-      {title}
-      <button onClick={handleRemove}>x</button>
-    </div>
-  )
+  return useObserver(() => {
+    const { title, completed } = item
+
+    return (
+      <div>
+        <input type="checkbox" checked={completed} onChange={handleToggle} />
+        {title}
+        <button onClick={handleRemove}>x</button>
+      </div>
+    )
+  })
 }
 
-export default inject('todoStore')(observer(TodoItem))
+export default TodoItem
