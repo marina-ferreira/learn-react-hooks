@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { inject } from 'mobx-react'
+import { useTodoStore } from 'hooks'
 
-const AddTodo = ({ todoStore }) => {
+const AddTodo = () => {
+  const todoStore = useTodoStore()
+
   const [input, setInput] = useState('')
 
   const handleInputChange = e => {
@@ -34,4 +36,4 @@ const AddTodo = ({ todoStore }) => {
   )
 }
 
-export default inject('todoStore')(AddTodo)
+export default AddTodo
