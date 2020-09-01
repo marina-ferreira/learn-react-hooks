@@ -1,5 +1,5 @@
 <h1 align="left">
-  <br/>Learn React Hooks
+  Learn React Hooks
   <sub><br />Daniel Bugl</sub>
 </h1>
 
