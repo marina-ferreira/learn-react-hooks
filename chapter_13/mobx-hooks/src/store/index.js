@@ -3,8 +3,8 @@ import { observable, action, computed, decorate } from 'mobx'
 import { fetchAPITodos, generateID } from 'services/api'
 
 class TodoStore {
-  todos: []
-  filter: 'all'
+  todos = []
+  filter = 'all'
 
   get filteredTodos () {
     switch (this.filter) {

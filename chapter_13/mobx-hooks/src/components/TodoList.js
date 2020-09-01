@@ -1,14 +1,17 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
+import { useObserver } from 'mobx-react'
+import { useTodoStore } from 'hooks'
 
 import TodoItem from './TodoItem'
 
-const TodoList = ({ todoStore }) => {
-  if (!todoStore.filteredTodos) return <div>Loading...</div>
+const TodoList = () => {
+  const todoStore = useTodoStore()
 
-  return todoStore.filteredTodos.map(item =>
-    <TodoItem key={item.id} item={item} />
-  )
+  return useObserver(() => (
+    todoStore.filteredTodos.map(item =>
+      <TodoItem key={item.id} item={item} />
+    )
+  ))
 }
 
-export default inject('todoStore')(observer(TodoList))
+export default TodoList
