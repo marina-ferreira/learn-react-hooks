@@ -1,39 +1,52 @@
 import React, { useState } from 'react'
+import { useLocalStore, useObserver } from 'mobx-react'
+
 import { useTodoStore } from 'hooks'
 
 const AddTodo = () => {
   const todoStore = useTodoStore()
 
-  const [input, setInput] = useState('')
+  const inputStore = useLocalStore(() => ({
+    value: '',
+    get disabled () {
+      return !this.value
+    },
+    updateFromInput(e) {
+      this.value = e.target.value
+    },
+    update (value) {
+      this.value = value
+    }
+  }))
 
   const handleInputChange = e => {
-    setInput(e.target.value)
+    inputStore.updateFromInput(e)
   }
 
   const handleSubmit = e => {
     e.preventDefault()
 
-    if (!input) return
+    if (!inputStore.value) return
 
-    todoStore.addTodo(input)
-    setInput('')
+    todoStore.addTodo(inputStore.value)
+    inputStore.update('')
   }
 
-  return (
+  return useObserver(() => (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter new task"
-        value={input}
+        value={inputStore.value}
         onChange={handleInputChange}
       />
       <input
         type="submit"
         value="Add task"
-        disabled={!input}
+        disabled={inputStore.disabled}
       />
     </form>
-  )
+  ))
 }
 
 export default AddTodo
